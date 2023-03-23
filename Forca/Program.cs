@@ -1,4 +1,5 @@
-﻿using static System.Net.Mime.MediaTypeNames;
+﻿using System;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace JogoDaForca
 {
@@ -11,7 +12,16 @@ namespace JogoDaForca
 
             string palavraAleatoriaEscolhida = palavras[aleatorio.Next(palavras.Length)];
 
-            Console.WriteLine($"Testando: a palavra escolhida é: {palavraAleatoriaEscolhida}");
+            char[] palavraConvertida = palavraAleatoriaEscolhida.ToCharArray();
+
+            char[] palavraDoJogo = new char[palavraConvertida.Length];
+
+            for (int i = 0; i < palavraConvertida.Length; i++)
+            {
+                palavraDoJogo[i] = '-';
+                Console.Write(palavraDoJogo[i]);
+                Console.WriteLine(palavraConvertida[i]);
+            }
         }
     }
 }
