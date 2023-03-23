@@ -16,12 +16,26 @@ namespace JogoDaForca
 
             char[] palavraDoJogo = new char[palavraConvertida.Length];
 
-            for (int i = 0; i < palavraConvertida.Length; i++)
+            int i = 0;
+
+            while (i < palavraConvertida.Length)
             {
                 palavraDoJogo[i] = '-';
-                Console.Write(palavraDoJogo[i]);
-                Console.WriteLine(palavraConvertida[i]);
+                Console.WriteLine(palavraDoJogo[i]);
+                //Console.WriteLine(palavraConvertida[i]);
+                i++;
             }
+
+            //Console.WriteLine("Digite uma letra: ");
+            //char letraDigitada = Console.ReadLine();
+
+
+
+
+            //if (palavraConvertida.Contains(letraDigitada))
+            //{
+            //    Console.WriteLine(letraDigitada);
+            //}
         }
     }
 }
