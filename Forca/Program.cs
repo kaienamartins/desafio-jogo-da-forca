@@ -1,13 +1,12 @@
 ﻿using System;
-using static System.Net.Mime.MediaTypeNames;
 
-namespace JogoDaForca
+namespace jogoDaForca
 {
     class Forca
     {
         static void Main(string[] args)
         {
-            String[] palavras = { "abacate", "avião", "banana", "balão", "caqui", "chuva", "daenerys", "damasco", "dromedário", "elefante", "esquimó", "feijão", "florianópolis", "forró", "gelatina", "gelo", "herói", "hospital", "igreja", "iglu", "jalapão", "jamylle", "kaiena", "kiwi", "leia", "lua", "luke", "luz", "marreco", "martelo", "naboo", "navio", "nuvem", "ovelha", "ovo", "presunto", "prisma", "quasimodo", "queijo", "rei", "riacho", "sacripanta", "skywalker", "sol", "tatooine", "torresmo", "trem", "urso", "uva", "vendaval", "vinho", "waffle", "whovian", "xadrex", "xarope", "xerox", "yakisoba", "yogurt", "zebra", "zumbi" };
+            string[] palavras = { "abacate", "amora", "banana", "brigadeiro", "caqui", "chuva", "daenerys", "damasco", "dinossauro", "elefante", "esquilo", "feijoada", "floripa", "gelatina", "gelo", "halloween", "hospital", "igreja", "iglu", "javali", "jamylle", "kaiena", "kiwi", "leia", "lua", "luke", "luz", "marreco", "martelo", "naboo", "navio", "nuvem", "ovelha", "ovo", "presunto", "prisma", "quasimodo", "queijo", "rei", "riacho", "sacripanta", "skywalker", "sol", "tatooine", "torresmo", "trem", "urso", "uva", "vendaval", "vinho", "waffle", "whovian", "xadrex", "xarope", "xerox", "yakisoba", "yogurt", "zebra", "zumbi" };
             Random aleatorio = new Random();
 
             string palavraAleatoriaEscolhida = palavras[aleatorio.Next(palavras.Length)];
@@ -21,21 +20,56 @@ namespace JogoDaForca
             while (i < palavraConvertida.Length)
             {
                 palavraDoJogo[i] = '-';
-                Console.WriteLine(palavraDoJogo[i]);
-                //Console.WriteLine(palavraConvertida[i]);
+                Console.Write(palavraDoJogo[i]);
                 i++;
             }
 
-            //Console.WriteLine("Digite uma letra: ");
-            //char letraDigitada = Console.ReadLine();
+            bool acertou = false;
+            List<char> tentativas = new List<char>();
 
+            while (!acertou)
+            {
+                Console.Write("\nDigite uma letra: ");
+                string paraUsarNoChar = Console.ReadLine();
 
+                char letraDigitada = paraUsarNoChar[0];
+    
 
+                if (!tentativas.Contains(letraDigitada))
+                {
+                    tentativas.Add(letraDigitada);
+                    bool letra = false;
 
-            //if (palavraConvertida.Contains(letraDigitada))
-            //{
-            //    Console.WriteLine(letraDigitada);
-            //}
+                    for (int k = 0; k < palavraAleatoriaEscolhida.Length; k++)
+                    {
+                        if (letraDigitada == palavraAleatoriaEscolhida[k])
+                        {
+                            palavraDoJogo[k] = letraDigitada;
+                            letra = true;
+                        }
+                    }
+
+                    if (letra)
+                    {
+                        Console.WriteLine("Tem essa letra mesmo");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Errou! (Faustão's voice). Não tem essa letra não");
+                    }
+                    Console.WriteLine(palavraDoJogo);
+                    if (!palavraDoJogo.Contains('-'))
+                    {
+                        acertou = true;
+                        Console.WriteLine($"Parabéns, você acertou a palavra! Era {palavraAleatoriaEscolhida}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Você já tentou essa letra antes. Tente outra letra.");
+                }
+            }
+            
         }
-    }
+    } 
 }
